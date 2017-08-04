@@ -1,0 +1,6 @@
+%include ../default.pure
+%include ./credentials.private.pure
+
+server.staticDir = ../../../public
+logger.outFile = console
+logger.errFile = console
