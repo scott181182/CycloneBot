@@ -1,0 +1,8 @@
+server
+    port = 6899
+    staticDir = ../../public
+logger
+    outFile = ../../out.log
+    errFile = ../../err.log
+groupme
+    endpoint = https://api.groupme.com/v3/bots/post
