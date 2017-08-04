@@ -32,6 +32,7 @@ function main(args: string[])
 {
   app.set("mode", config.get("env"));
   app.set("port", config.get("server.port"));
+  app.set("port:https", config.get("server.port-https"));
   app.set("staticDir", config.getPath("server.staticDir"));
 
   const application = new Application(app);

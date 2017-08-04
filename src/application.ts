@@ -1,9 +1,13 @@
 import { Express, RequestHandler, static as serveFiles } from "express";
+import { createServer as httpServer } from "http";
+import { createServer as httpsServer } from "https";
 import { dirname, resolve } from "path";
+import { readFileSync } from "fs";
 
 import Logger from "./logger";
 const logger = Logger.for("app");
 
+import config from "./config";
 import { Handler } from "./handler";
 import { ROUTES, SERVICES } from "./routes";
 import { Service, Status } from "./service";
@@ -53,12 +57,41 @@ export default class Application
   }
   public start()
   {
-    this.app.listen(this.app.get("port"), () => {
-      logger.info(`Server running!\n   Port: ${this.app.get("port")}\n   Mode: ${this.app.get("mode")}`);
-      logger.info(this.app.get("mode") === "dev" ?
-        "To run in production, pass 'prod' as an argument" :
-        "To run in development, don't pass 'prod' as an argument");
-    });
+      if(config.has("ssl"))
+      {
+          const options = {
+              cert: readFileSync(config.getPath("ssl.cert")),
+              key:  readFileSync(config.getPath("ssl.key")),
+          };
+          httpsServer(options, this.app).listen(this.app.get("port:https"), () => {
+              logger.info("Server running in HTTPS!\n" +
+                  `   Port: ${this.app.get("port:https")}\n` +
+                  `   Mode: ${this.app.get("mode")}`);
+              logger.info(this.app.get("mode") === "dev" ?
+                  "To run in production, pass 'prod' as an argument" :
+                  "To run in development, don't pass 'prod' as an argument");
+          });
+          httpServer((req, res) => {
+              res.statusCode = 301;
+              res.setHeader("Location", "https://cyclonebot.duckdns.org");
+              res.end(
+                  "<html><head><title>Moved</title></head>" +
+                  "<body><h1>Moved</h1>" +
+                  "<p>This page has moved to <a href=\"https://cyclonebot.duckdns.org/\">" +
+                  "https://cyclonebot.duckdns.org/" +
+                  "</a></p></body></html>"
+              );
+          }).listen(this.app.get("port"));
+      }
+      else
+      {
+          this.app.listen(this.app.get("port"), () => {
+              logger.info(`Server running!\n   Port: ${this.app.get("port")}\n   Mode: ${this.app.get("mode")}`);
+              logger.info(this.app.get("mode") === "dev" ?
+                "To run in production, pass 'prod' as an argument" :
+                "To run in development, don't pass 'prod' as an argument");
+          });
+      }
   }
 
   private async initServices(): Promise<Status>

@@ -6,3 +6,5 @@ npm-debug.log
 .DS_Store
 config/**/*.private.pure
 lib/config/**/*.private.pure
+dist/
+public/

@@ -1,0 +1,11 @@
+TurnLightOn turn the light on
+TurnLightOn to turn the light on
+TurnLightOn light on
+
+TurnLightOff turn the light off
+TurnLightOff to turn the light off
+TurnLightOff light off
+
+TurnLightColor turn the light {Color}
+TurnLightColor to turn the light {Color}
+TurnLightColor light {Color}

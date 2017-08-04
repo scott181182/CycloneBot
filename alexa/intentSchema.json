@@ -1,16 +1,13 @@
 {
     "intents":
     [
+        { "intent": "TurnLightOn" },
+        { "intent": "TurnLightOff" },
         {
-            "intent": "GetHoroscope",
-            "slots":
-            [
-                { "name": "Sign", "type": "LIST_OF_SIGNS" },
-                { "name": "Date", "type": "AMAZON.DATE" }
-            ]
-        },
-        {
-          "intent": "GetLuckyNumbers"
+          "intent": "TurnLightColor",
+          "slots": [
+              { "name": "Color", "type": "COLORS" }
+          ]
         }
     ]
 }
