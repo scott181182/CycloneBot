@@ -3,6 +3,9 @@ red
 green
 blue
 yellow
+magenta
+cyan
 purple
-violet
 orange
+fuchsia
+pink

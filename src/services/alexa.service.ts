@@ -3,6 +3,7 @@ import { Service, Status } from "../service";
 
 import { RequestBody, Request, IntentRequest, ResponseBody } from "alexa-sdk";
 import { AlexaResponse } from "../model/alexa.model";
+import { ColorMap } from "../model/flux.model";
 import fluxbulb from "../model/flux.model";
 
 import Logger from "../logger";
@@ -31,8 +32,31 @@ export class AlexaService implements Service
             res.tell("Okay");
             return {  };
         },
+        "TurnLightWarm": (req, res) => {
+            fluxbulb.setWarm(1);
+            res.tell("Okay");
+            return {  };
+        },
         "TurnLightColor": (req, res) => {
-            res.tell("I can't do that yet!");
+            const color = ColorMap[req.request.intent.slots.Color.value];
+            fluxbulb.setRGB(color.red, color.green, color.blue);
+            res.tell("Okay!");
+            return {  };
+        },
+        "SetLightBrightness": (req, res) => {
+            const level = parseInt(req.request.intent.slots.Level.value) / 100;
+
+            res.tell("Sorry, I can't do that yet!");
+            return {  };
+        },
+        "TurnLightDim": (req, res) => {
+            fluxbulb.darken(0.5);
+            res.tell("Okay");
+            return {  };
+        },
+        "TurnLightBright": (req, res) => {
+            fluxbulb.brighten(0.5);
+            res.tell("Okay");
             return {  };
         }
     };

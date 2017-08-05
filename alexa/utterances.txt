@@ -1,11 +1,47 @@
 TurnLightOn turn the light on
 TurnLightOn to turn the light on
+TurnLightOn turn on the light
+TurnLightOn to turn on the light
 TurnLightOn light on
 
 TurnLightOff turn the light off
 TurnLightOff to turn the light off
+TurnLightOff turn off the light
+TurnLightOff to turn off the light
 TurnLightOff light off
+
+TurnLightWarm turn the light warm
+TurnLightWarm to turn the light warm
+TurnLightWarm light warm
+TurnLightWarm set the light to normal
+TurnLightWarm make the light normal
+TurnLightWarm reset the light
 
 TurnLightColor turn the light {Color}
 TurnLightColor to turn the light {Color}
+TurnLightColor make the light {Color}
+TurnLightColor to make the light {Color}
 TurnLightColor light {Color}
+
+SetLightBrightness turn the light down to {Level} percent
+SetLightBrightness turn the light up to {Level} percent
+SetLightBrightness set light brightness {Level} percent
+SetLightBrightness set light {Level} percent
+
+TurnLightDim dim the light
+TurnLightDim to dim the light
+TurnLightDim dim the lights
+TurnLightDim to dim the lights
+TurnLightDim lower the light
+TurnLightDim to lower the light
+TurnLightDim lower the lights
+TurnLightDim to lower the lights
+
+TurnLightBright brighten the light
+TurnLightBright to brighten the light
+TurnLightBright raise the light
+TurnLightBright to raise the light
+TurnLightBright brighten the lights
+TurnLightBright to brighten the lights
+TurnLightBright raise the lights
+TurnLightBright to raise the lights

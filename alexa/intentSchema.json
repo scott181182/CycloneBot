@@ -3,11 +3,20 @@
     [
         { "intent": "TurnLightOn" },
         { "intent": "TurnLightOff" },
+        { "intent": "TurnLightWarm" },
         {
-          "intent": "TurnLightColor",
-          "slots": [
-              { "name": "Color", "type": "COLORS" }
-          ]
-        }
+            "intent": "TurnLightColor",
+            "slots": [
+                { "name": "Color", "type": "COLORS" }
+            ]
+        },
+        {
+            "intent": "SetLightBrightness",
+            "slots": [
+                { "name": "Level", "type": "AMAZON.NUMBER" }
+            ]
+        },
+        { "intent": "TurnLightDim" },
+        { "intent": "TurnLightBright" },
     ]
 }
