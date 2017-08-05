@@ -12,7 +12,8 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "pure-config": "^0.6.1",
-    "request": "^2.81.0"
+    "request": "^2.81.0",
+    "fluxjs": "^0.2.0"
   },
   "engines": {
     "node": ">=4.0.0"
