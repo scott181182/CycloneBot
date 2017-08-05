@@ -48,9 +48,18 @@ var AlexaService = (function () {
         this.intentMap = {
             "AMAZON.CancelIntent": function (req, res) { return _this.handleSessionEndedRequest; },
             "AMAZON.StopIntent": function (req, res) { return _this.handleSessionEndedRequest; },
-            "TurnLightOn": function (req, res) { flux_model_1["default"].turnOn(); return {}; },
-            "TurnLightOff": function (req, res) { flux_model_1["default"].turnOff(); return {}; },
+            "TurnLightOn": function (req, res) {
+                flux_model_1["default"].turnOn();
+                res.tell("Okay");
+                return {};
+            },
+            "TurnLightOff": function (req, res) {
+                flux_model_1["default"].turnOff();
+                res.tell("Okay");
+                return {};
+            },
             "TurnLightColor": function (req, res) {
+                res.tell("I can't do that yet!");
                 return {};
             }
         };
@@ -83,7 +92,7 @@ var AlexaService = (function () {
         return Promise.resolve({ version: "1.0", response: response, sessionAttributes: sessionMap });
     };
     AlexaService.prototype.handleLaunchRequest = function (response) {
-        response.prompt("Cyclone Bot here. You can give me commands, like turn off the light, or turn the light green", "What is my purpose?");
+        response.prompt("Cyclone Bot here. You can give me commands, like turn off the light, or turn the light green");
     };
     AlexaService.prototype.handleIntentRequest = function (request, response) {
         if (this.intentMap[request.request.intent.name]) {
@@ -100,7 +109,7 @@ var AlexaService = (function () {
         return {};
     };
     AlexaService.prototype.handleUnhandledRequest = function (response) {
-        response.prompt("Sorry, I don't know how to do that. Please try again", "What is my purpose?");
+        response.prompt("Sorry, I don't know how to do that. Please try again");
     };
     return AlexaService;
 }());
