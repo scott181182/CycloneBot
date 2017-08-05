@@ -21,8 +21,8 @@ export class AlexaService implements Service
         "AMAZON.CancelIntent": (req, res) => this.handleSessionEndedRequest,
         "AMAZON.StopIntent":   (req, res) => this.handleSessionEndedRequest,
 
-        "TurnLightOn":  (req, res) => { fluxbulb.turnOn (false); return {  }; },
-        "TurnLightOff": (req, res) => { fluxbulb.turnOff(false); return {  }; },
+        "TurnLightOn":  (req, res) => { fluxbulb.turnOn();  return {  }; },
+        "TurnLightOff": (req, res) => { fluxbulb.turnOff(); return {  }; },
         "TurnLightColor": (req, res) => {
             return {  };
         }

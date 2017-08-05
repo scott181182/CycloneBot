@@ -8,3 +8,4 @@ config/**/*.private.pure
 lib/config/**/*.private.pure
 dist/
 public/
+sslcert/

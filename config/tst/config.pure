@@ -1,2 +1,5 @@
 %include ../default.pure
 %include ./credentials.private.pure
+
+logger.outFile = console
+logger.errFile = console
