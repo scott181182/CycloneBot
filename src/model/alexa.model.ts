@@ -10,6 +10,7 @@ export class AlexaResponse implements Response
     public constructor()
     {
         this.shouldEndSession = false;
+        this.tell("I don't know what to say!");
     }
 
     public tell(text: string) {
@@ -18,7 +19,7 @@ export class AlexaResponse implements Response
     public  ssml(ssml: string) {
         this.outputSpeech = { type: "SSML", ssml };
     }
-    public prompt(text: string, reprompt: string) {
+    public prompt(text: string, reprompt = "What is my purpose?") {
         this.tell(text);
         this.reprompt = { outputSpeech: { type: "PlainText", text: reprompt } };
     }

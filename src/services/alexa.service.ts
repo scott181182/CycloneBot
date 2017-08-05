@@ -21,9 +21,18 @@ export class AlexaService implements Service
         "AMAZON.CancelIntent": (req, res) => this.handleSessionEndedRequest,
         "AMAZON.StopIntent":   (req, res) => this.handleSessionEndedRequest,
 
-        "TurnLightOn":  (req, res) => { fluxbulb.turnOn();  return {  }; },
-        "TurnLightOff": (req, res) => { fluxbulb.turnOff(); return {  }; },
+        "TurnLightOn":  (req, res) => {
+            fluxbulb.turnOn();
+            res.tell("Okay");
+            return {  };
+        },
+        "TurnLightOff": (req, res) => {
+            fluxbulb.turnOff();
+            res.tell("Okay");
+            return {  };
+        },
         "TurnLightColor": (req, res) => {
+            res.tell("I can't do that yet!");
             return {  };
         }
     };
@@ -53,8 +62,7 @@ export class AlexaService implements Service
     private handleLaunchRequest(response: AlexaResponse)
     {
         response.prompt(
-            "Cyclone Bot here. You can give me commands, like turn off the light, or turn the light green",
-            "What is my purpose?"
+            "Cyclone Bot here. You can give me commands, like turn off the light, or turn the light green"
         );
     }
     private handleIntentRequest(request: RequestBody<IntentRequest>, response: AlexaResponse): Map<any>
@@ -72,6 +80,6 @@ export class AlexaService implements Service
         return {  };
     }
     private handleUnhandledRequest(response: AlexaResponse) {
-        response.prompt("Sorry, I don't know how to do that. Please try again", "What is my purpose?");
+        response.prompt("Sorry, I don't know how to do that. Please try again");
     }
 }
