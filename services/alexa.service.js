@@ -39,6 +39,7 @@ var config_1 = require("../config");
 var service_1 = require("../service");
 var alexa_model_1 = require("../model/alexa.model");
 var flux_model_1 = require("../model/flux.model");
+var flux_model_2 = require("../model/flux.model");
 var logger_1 = require("../logger");
 var logger = logger_1["default"]["for"]("alexa");
 var APP_ID = config_1["default"].get("alexa.appID");
@@ -49,17 +50,39 @@ var AlexaService = (function () {
             "AMAZON.CancelIntent": function (req, res) { return _this.handleSessionEndedRequest; },
             "AMAZON.StopIntent": function (req, res) { return _this.handleSessionEndedRequest; },
             "TurnLightOn": function (req, res) {
-                flux_model_1["default"].turnOn();
+                flux_model_2["default"].turnOn();
                 res.tell("Okay");
                 return {};
             },
             "TurnLightOff": function (req, res) {
-                flux_model_1["default"].turnOff();
+                flux_model_2["default"].turnOff();
+                res.tell("Okay");
+                return {};
+            },
+            "TurnLightWarm": function (req, res) {
+                flux_model_2["default"].setWarm(1);
                 res.tell("Okay");
                 return {};
             },
             "TurnLightColor": function (req, res) {
-                res.tell("I can't do that yet!");
+                var color = flux_model_1.ColorMap[req.request.intent.slots.Color.value];
+                flux_model_2["default"].setRGB(color.red, color.green, color.blue);
+                res.tell("Okay!");
+                return {};
+            },
+            "SetLightBrightness": function (req, res) {
+                var level = parseInt(req.request.intent.slots.Level.value) / 100;
+                res.tell("Sorry, I can't do that yet!");
+                return {};
+            },
+            "TurnLightDim": function (req, res) {
+                flux_model_2["default"].darken(0.5);
+                res.tell("Okay");
+                return {};
+            },
+            "TurnLightBright": function (req, res) {
+                flux_model_2["default"].brighten(0.5);
+                res.tell("Okay");
                 return {};
             }
         };
